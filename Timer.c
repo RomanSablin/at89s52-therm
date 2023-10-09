@@ -4,7 +4,7 @@
  * Created: 17.07.2020 17:06:38
  *  Author: r.sablin
  */ 
-#include <Atmel/AT89X52.H>
+#include <REG52.H>
 
 #include "Timer.h"
 

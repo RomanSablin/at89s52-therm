@@ -9,20 +9,23 @@
 #ifndef __C7SEGMENT3_H__
 #define __C7SEGMENT3_H__
 
-#include <Atmel/AT89X52.H>
-
-#define	simA  P2_0
-#define	simB  P2_2
-#define simC  P2_6
-#define simD  P2_4
-#define simE  P2_3
-#define simF  P2_1
-#define simG  P2_7
+#include <REG52.H>
+#include <stdint.h>
+// PORT 2
+#define	simA  0
+#define	simB  2
+#define simC  6
+#define simD  4
+#define simE  3
+#define simF  1
+#define simG  7
 	
-#define simDP P2_5
-#define simDIG1 P1_4
-#define simDIG2 P1_3
-#define simDIG3 P1_2
+#define simDP 5
+
+// PORT 1
+#define simDIG1 4
+#define simDIG2 3
+#define simDIG3 2
 
 enum
 {
@@ -50,7 +53,7 @@ enum
 	dig_minus = mG,// ; -
 	dig_off = 0
 };
-	
+
 void C7Segment3Init();
 void C7Segment3SetDigit(uint8_t _dig);
 void C7Segment3Show();

@@ -32,7 +32,8 @@ uint8_t Crc8(uint8_t * _buf, uint8_t _size)
     while (_size--)
     {
 	    uint8_t inbyte = *_buf++;
-	    for (uint8_t i = 8; i; i--)
+			uint8_t i;
+	    for (i = 8; i; i--)
 	    {
 		    uint8_t mix = (crc ^ inbyte) & 0x01;
 		    crc >>= 1;
