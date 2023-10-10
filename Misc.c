@@ -43,3 +43,13 @@ uint8_t Crc8(uint8_t * _buf, uint8_t _size)
     }
     return crc;
 }
+
+void Delay(uint16_t _delay)
+{
+	int i;
+	for(i=0; i<_delay; i++)
+	{
+		i++;
+		--i;
+	}
+}

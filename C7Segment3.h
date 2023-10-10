@@ -40,18 +40,18 @@ enum
 
 enum
 {
-	dig_0 = (mA|mB|mC|mD|mE|mF),//  ; 0
-	dig_1 = (mB|mC),// ; 1
-	dig_2 = (mA|mB|mD|mE|mG),// ; 2
-	dig_3 = (mA|mB|mC|mD|mG),// ; 3
-	dig_4 = (mB|mC|mF|mG),// ; 4
-	dig_5 = (mA|mC|mD|mF|mG),// ; 5
-	dig_6 = (mA|mC|mD|mE|mF|mG),// ; 6
-	dig_7 = (mA|mB|mC),// ; 7
-	dig_8 = (mA|mB|mC|mD|mE|mF|mG),// ; 8
-	dig_9 = (mA|mB|mC|mD|mF|mG), // ; 9
-	dig_minus = mG,// ; -
-	dig_off = 0
+	dig_0 = ~(mA|mB|mC|mD|mE|mF),//  ; 0
+	dig_1 = ~(mB|mC),// ; 1
+	dig_2 = ~(mA|mB|mD|mE|mG),// ; 2
+	dig_3 = ~(mA|mB|mC|mD|mG),// ; 3
+	dig_4 = ~(mB|mC|mF|mG),// ; 4
+	dig_5 = ~(mA|mC|mD|mF|mG),// ; 5
+	dig_6 = ~(mA|mC|mD|mE|mF|mG),// ; 6
+	dig_7 = ~(mA|mB|mC),// ; 7
+	dig_8 = ~(mA|mB|mC|mD|mE|mF|mG),// ; 8
+	dig_9 = ~(mA|mB|mC|mD|mF|mG), // ; 9
+	dig_minus = ~mG,// ; -
+	dig_off = 0xff
 };
 
 void C7Segment3Init();
