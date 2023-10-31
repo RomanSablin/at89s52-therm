@@ -1,11 +1,3 @@
-/* 
-* C7Segment3.h
-*
-* Created: 01.07.2020 17:23:37
-* Author: r.sablin
-*/
-
-
 #ifndef __C7SEGMENT3_H__
 #define __C7SEGMENT3_H__
 

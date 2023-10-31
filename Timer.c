@@ -1,27 +1,36 @@
-/*
- * Timer.c
- *
- * Created: 17.07.2020 17:06:38
- *  Author: r.sablin
- */ 
 #include <REG52.H>
 
 #include "Timer.h"
 
-void (* sInterrupt) (void);
+void (*sInterrupt)(void);
 
-void Timer1Init(void * _interrupt)
-{
-//	TCCR1A = 0x00;
-//	TCCR1B |= _BV(CS10)|_BV(CS11)|_BV(CS12);    //64
-//	TIMSK = _BV(OCIE1A);
-//	OCR1A = 100;
+#define TIMER_VALUE 0xD700
+
+void Timer0Init(void *_interrupt) {
 	sInterrupt = _interrupt;
+	TMOD = 0x01;       //Timer0 mode 1
+	TR0 = 1;           //turn ON Timer0
+	Timer0SetCounter(TIMER_VALUE);
+	Timer0Enable();
 }
 
-ISR(TIMER1_COMPA_vect)
+void Timer0SetCounter(const uint16_t _value) {
+	TH0 = _value >> 8;
+	TL0 = _value & 0xff;
+}
+
+void Timer0Enable() {
+	ET0 = 1;
+}
+
+void Timer0Disable() {
+	ET0 = 0;
+}
+
+void Timer0ISR(void) interrupt 1 using 1
 {
+	static char stat = 0;
+	Timer0SetCounter(TIMER_VALUE);
 	sInterrupt();
-//	TCNT1 = 0;		// Reset counter cos no CTC
 }
 

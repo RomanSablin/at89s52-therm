@@ -1,12 +1,3 @@
-/* 
-* C7Segment3.cpp
-*
-* Created: 01.07.2020 17:23:37
-* Author: r.sablin
-*/
-
-#define F_CPU 1000000UL
-
 #include "C7Segment3.h"
 #include "Timer.h"
 #include "Misc.h"
@@ -25,7 +16,7 @@ void C7Segment3Init()
 	mMemory[2] = 0;
 	P1 |= ~((1<<simDIG1)|(1<<simDIG2)|(1<<simDIG3));
 	P2 = 0xFF;
-	Timer1Init(C7Segment3Show);
+	Timer0Init(C7Segment3Show);
 }
 
 void C7SegmentSet(uint8_t _val, uint8_t _sign)

@@ -1,11 +1,3 @@
-/*
- * Misc.h
- *
- * Created: 17.07.2020 17:22:48
- *  Author: r.sablin
- */ 
-
-
 #ifndef MISC_H_
 #define MISC_H_
 
