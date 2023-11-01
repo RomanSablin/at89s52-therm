@@ -1,7 +1,6 @@
 #ifndef __C7SEGMENT3_H__
 #define __C7SEGMENT3_H__
 
-#include <REG52.H>
 #include <stdint.h>
 // PORT 2
 #define	simA  0
