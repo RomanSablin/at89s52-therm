@@ -63,51 +63,56 @@ static uint8_t Ds18b20_Read()
 #define DS18B20_CMD_RSCRATCHPAD 0xbe
 
 
-int Ds18b20_GetTemp() {
-	uint8_t temp = 0;
+char Ds18b20_GetTemp(char *_temperature, char *_sign) {
+	char temp = 0;
 	temp = Ds18b20_Reset();
 	if (temp != 0) //reset
-		return temp;
+		return -1;
+
 	UartFlush();
 	UartSetBaud(BAUD_57600);
-	P0_0 = 1;
+
 	Ds18b20_Write(DS18B20_CMD_SKIPROM);
 	Ds18b20_Write(DS18B20_CMD_CONVERTTEMP);
-	P0_0 = 0;
+
 	Delay(35000); // 800 ms
+
 	temp = Ds18b20_Reset();
 	if (temp != 0) //reset
-		return temp;
+		return -1;
+
 	UartSetBaud(BAUD_57600);
-	P0_1 = 1;
 	Ds18b20_Write(DS18B20_CMD_SKIPROM); //skip ROM
 	Ds18b20_Write(DS18B20_CMD_RSCRATCHPAD); //read scratchpad
-	P0_1 = 0;
 
-	P0_2 = 1;
 	for(int i=0; i<9; i++)
 		Ds18b20_data[i] = Ds18b20_Read();
-	P0_2 = 0;
 
-	uint16_t raw;
-	raw = Ds18b20_data[1];
-	raw <<= 8;
-	raw &= 0xff00;
-	raw |= Ds18b20_data[0];
-
-	if(raw < 0x7d0)
+	if(Crc8(Ds18b20_data, 8) == Ds18b20_data[8])
 	{
-		raw >>= 4;
-//		*_sign = 0;
-		temp = (uint8_t) raw & 0x7f;
+		uint16_t raw;
+		raw = Ds18b20_data[1];
+		raw <<= 8;
+		raw &= 0xff00;
+		raw |= Ds18b20_data[0];
+
+		if(raw < 0x7d0)
+		{
+			raw >>= 4;
+			*_sign = 0;
+			*_temperature = (uint8_t) raw & 0x7f;
+		}
+		else
+		{
+			raw = ((uint16_t)0xffff-(uint16_t)raw)>>4;
+			*_sign = 1;
+			int8_t st = (int8_t) raw & 0xff;
+			*_temperature = abs(st);
+		}
+		temp = 0;
 	}
 	else
-	{
-		raw = ((uint16_t)0xffff-(uint16_t)raw)>>4;
-//		*_sign = 1;
-		int8_t st = (int8_t) raw & 0xff;
-		temp = abs(st);
-	}
+		temp = -1;
 
 	return temp;
 }

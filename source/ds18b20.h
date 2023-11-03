@@ -3,6 +3,6 @@
 
 #include "uart.h"
 
-int Ds18b20_GetTemp();
+char Ds18b20_GetTemp(char *_temperature, char *_sign);
 
 #endif /* DS18B20_H_ */

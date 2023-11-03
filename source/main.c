@@ -4,16 +4,17 @@
 #include "Mcu.h"
 
 void main() {
-	uint8_t temp;
+	char temp;
+	char sign;
 
 	McuInit();
 	C7Segment3Init();
+	C7SegmentReset();
 	McuEnableInterrupts();
-	temp = 11;
 	UartInit(BAUD_9600);
 	while (1) {
 		Delay(10000);
-		temp = Ds18b20_GetTemp();
-		C7SegmentSet(temp, 0);
+		if (Ds18b20_GetTemp(&temp, &sign) == 0)
+			C7SegmentSet(temp, sign);
 	}
 }

@@ -79,3 +79,10 @@ void SetSegmentWait()
 	mMemory[2] = 10;
 	Delay(10000);
 }
+
+void C7SegmentReset()
+{
+	mMemory[0] = dig_minus;
+	mMemory[1] = dig_minus;
+	mMemory[2] = dig_minus;
+}

@@ -53,5 +53,7 @@ void C7Segment3SetDigit(uint8_t _dig);
 void C7Segment3Show();
 void C7SegmentSet(uint8_t _val, uint8_t _sign);
 void SetSegmentWait();
+void C7SegmentReset();
+
 
 #endif //__C7SEGMENT3_H__
