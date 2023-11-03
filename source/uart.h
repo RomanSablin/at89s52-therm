@@ -3,19 +3,24 @@
 
 #include <stdint.h>
 
+#include <mcs51/at89x52.h>
+
 typedef enum
 {
 	BAUD_9600 = 0xDC,
-	BAUD_115200 = 0xFA
+	BAUD_57600 = 0xFA
 }UartBaudrate_t;
 
-void uart_rx_enable(void);
-void uart_rx_disable(void);
-void uart_init_t1(UartBaudrate_t _baudrate);
-void uart_init_t2(UartBaudrate_t _baudrate);
-void uart_put(char _c);
-void uart_send(uint8_t *_data, uint8_t _size);
-uint8_t uart_wait_rx(uint8_t _size);
-uint8_t uart_get_rx_size(void);
-uint8_t * uart_get(void);
+void UartRxEnable(void);
+void UartRxDisable(void);
+void UartSetBaud(UartBaudrate_t _baudrate);
+void UartInit(UartBaudrate_t _baudrate);
+void UartPut(char _c);
+uint8_t UartGet();
+void UartSend(uint8_t *_data, uint8_t _size);
+uint8_t UartWaitRx(uint8_t _size);
+uint8_t UartGetRxSize(void);
+void UartFlush();
+void UartInterrupt(void) __interrupt (SI0_VECTOR) __using (1);
+
 #endif /* UART_H_ */

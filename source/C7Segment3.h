@@ -2,6 +2,9 @@
 #define __C7SEGMENT3_H__
 
 #include <stdint.h>
+
+#include "Timer.h"
+
 // PORT 2
 #define	simA  0
 #define	simB  2

@@ -5,7 +5,7 @@ DIR_BIN = ./Release
 
 CC = sdcc
 PROJ_NAME = thermometer
-CFLAGS = -mmcs51 --iram-size 256 --code-loc 0x0000 --code-size 0x2000 -I${DIR_INC}
+CFLAGS = -mmcs51 --model-small --iram-size 256 --opt-code-speed -I${DIR_INC}
 
 SRCS = $(wildcard ${DIR_SRC}/*.c)  
 

@@ -1,7 +1,6 @@
 #include <mcs51/at89x52.h>
 
 #include "C7Segment3.h"
-#include "Timer.h"
 #include "Misc.h"
 
 #define TABLE_SIZE 12

@@ -310,7 +310,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>Z:\usr\share\sdcc\include</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -386,6 +386,21 @@
               <FileName>Timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>Mcu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Mcu.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>ds18b20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ds18b20.c</FilePath>
             </File>
           </Files>
         </Group>

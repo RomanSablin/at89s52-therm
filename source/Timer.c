@@ -1,13 +1,11 @@
-#include <mcs51/at89x52.h>
-
 #include "Timer.h"
 
-void (*sInterrupt)(void);
+void (*sT0Handler)(void);
 
 #define TIMER_VALUE 0xD700
 
-void Timer0Init(void *_interrupt) {
-	sInterrupt = _interrupt;
+void Timer0Init(void *_handler) {
+	sT0Handler = _handler;
 	TMOD |= 0x01;       //Timer0 mode 1
 	TR0 = 1;           //turn ON Timer0
 	Timer0SetCounter(TIMER_VALUE);
@@ -27,10 +25,9 @@ void Timer0Disable() {
 	ET0 = 0;
 }
 
-void Timer0ISR(void) __interrupt (TF0_VECTOR) __using (1)
+void Timer0Interrupt (void) __interrupt(TF0_VECTOR) //__using(1)
 {
-	static char stat = 0;
 	Timer0SetCounter(TIMER_VALUE);
-	sInterrupt();
+	sT0Handler();
 }
 
